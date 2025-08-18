@@ -57,30 +57,29 @@ Base URL: `http://localhost:3000`
   ```json
   { "message": "Recurso solicitado no encontrado" }
 
-  ## Cómo ejecutar
+## ▶️ Cómo ejecutar
+```bash
+npm install
+npm run dev
+```
+# Servidor en http://localhost:3000
 
-  npm install
-  npm run dev
-  # Servidor en http://localhost:3000
+🧪 Pruebas rápidas (curl)
+# Lista de usuarios
+curl http://localhost:3000/users
 
-  Pruebas rápidas (curl)
+# Usuario por ID (reemplaza por un _id real del JSON)
+curl http://localhost:3000/users/8340d0ec33270a25f2413b69
 
-  # Lista de usuarios
-    curl http://localhost:3000/users
+# Lista de tarjetas
+curl http://localhost:3000/cards
 
-  # Usuario por ID (reemplaza por un _id real del JSON)
-  curl http://localhost:3000/users/8340d0ec33270a25f2413b69
+# Ruta inexistente
+curl http://localhost:3000/no-existe
 
-  # Lista de tarjetas
-  curl http://localhost:3000/cards
+✅ Linter
 
-  # Ruta inexistente
-  curl http://localhost:3000/no-existe
+npm run lint
 
-  ✅ Linter
-
-  npm run lint
-
-
-  ✍️ Autor
-  Lina Castro
+✍️ Autor
+Lina Castro 

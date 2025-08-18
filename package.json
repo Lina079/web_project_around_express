@@ -19,5 +19,14 @@
   "bugs": {
     "url": "https://github.com/Lina079/web_project_around_express/issues"
   },
-  "homepage": "https://github.com/Lina079/web_project_around_express#readme"
+  "homepage": "https://github.com/Lina079/web_project_around_express#readme",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }

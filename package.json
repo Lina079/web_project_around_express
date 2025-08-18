@@ -1,0 +1,23 @@
+{
+  "name": "web_project_around_express",
+  "version": "1.0.0",
+  "description": "Servidor Express para 'Around the World'.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lina079/web_project_around_express.git"
+  },
+  "keywords": [],
+  "author": "Lina Castro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lina079/web_project_around_express/issues"
+  },
+  "homepage": "https://github.com/Lina079/web_project_around_express#readme"
+}

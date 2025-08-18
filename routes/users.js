@@ -9,24 +9,28 @@ async function readUsers() {
   return JSON.parse(data);
 }
 
+// GET /users lista todos los usuarios
 router.get('/', async (req, res, next) => {
   try {
     const users = await readUsers();
-    res.send(users);
+    return res.json(users);
   } catch (err) {
-    next(err);
+    return next(err);
   }
 });
 
+// Endpoint para obtener un usuario por ID
+
 router.get('/:id', async (req, res, next) => {
   try {
+    const id = String(req.params.id || '').trim();
     const users = await readUsers();
-    const user = users.find((u) => u.id === req.params.id);
+    const user = users.find((u) => String(u._id || '').trim() === id);
 
     if (!user) {
-      return res.status(404).send({ message: 'ID de usuario no encontrado' });
+      return res.status(404).json({ message: 'ID de usuario no encontrado' });
     }
-    return res.send(user);
+    return res.json(user);
   } catch (err) {
     return next(err);
   }

@@ -18,7 +18,7 @@ Expone endpoints de solo lectura que devuelven datos desde archivos JSON locales
 
 ## 📁 Estructura del proyecto
 
-```text
+~~~text
 .
 ├── app.js
 ├── data
@@ -33,7 +33,7 @@ Expone endpoints de solo lectura que devuelven datos desde archivos JSON locales
 ├── .gitignore
 ├── package.json
 └── README.md
-```
+~~~
 
 ## 🔌 Endpoints
 Base URL: `http://localhost:3000`

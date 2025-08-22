@@ -1,21 +1,42 @@
-# Tripleten web_project_around_express
+# Around (Express) — API REST con Node.js + Express
 
-# web_project_around_express
+**Stack:** Node.js · Express · MongoDB · Mongoose · Postman · ESLint
 
-Servidor Express para el proyecto **“Alrededor de los EE. UU.”** (Sprint Backend).
-Expone endpoints de solo lectura que devuelven datos desde archivos JSON locales.
+## 🧭 Resumen
+Servidor backend que provee la API para la aplicación **Around**, una galería social con usuarios y tarjetas.  
+Implementa un **CRUD completo** para usuarios y tarjetas, con validaciones y manejo centralizado de errores.
 
-## 🚀 Scripts
-- `npm run start` – arranca el servidor con Node.
-- `npm run dev` – arranca con **nodemon** (hot reload).
-- `npm run lint` – ejecuta **ESLint** con la guía Airbnb + reglas del sprint.
+---
 
-## 🛠️ Tecnologías
-- Node.js, Express
-- `fs/promises` y `path` para leer JSON desde disco
-- ESLint 8.56.0 + `eslint-config-airbnb-base` + `eslint-plugin-import`
-- EditorConfig (indentación 2 espacios, LF, UTF-8)
+## ✨ Funcionalidades
+- **Usuarios**
+  - Crear usuario
+  - Consultar todos los usuarios
+  - Consultar usuario por ID
+  - Actualizar información (nombre, bio, avatar)
+  - Manejo de errores (ID inválido, usuario no encontrado, validaciones de esquema)
 
+- **Tarjetas**
+  - Crear tarjeta
+  - Consultar todas las tarjetas
+  - Eliminar tarjeta
+  - Dar y quitar like
+  - Manejo de errores (ID inválido, tarjeta no encontrada)
+
+- **Middlewares**
+  - Validación de datos con Joi/Celebrate
+  - Centralización de manejo de errores
+  - Logs básicos de peticiones
+
+---
+
+## 🧱 Arquitectura
+- **Node.js + Express** para la lógica del servidor
+- **MongoDB + Mongoose** para la persistencia de datos
+- **Rutas separadas** para usuarios y tarjetas
+- **Controladores** con lógica de negocio desacoplada
+- **Middlewares personalizados** para validación y errores
+- **Linter (ESLint)** para mantener calidad de código
 ## 📁 Estructura del proyecto
 
 ~~~text
@@ -81,5 +102,8 @@ curl http://localhost:3000/no-existe
 
 npm run lint
 
-✍️ Autor
-Lina Castro 
+## ✍️ Autora 
+Lina Castro - Full Stack Dev Jr.
+LinkedIn: https://www.linkedin.com/in/lina-castro079/
+
+GitHub: https://github.com/Lina079

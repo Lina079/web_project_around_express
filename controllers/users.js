@@ -20,7 +20,12 @@ module.exports.getUserById = (req, res, next) => {
       throw err;
     })
     .then((user) => res.send(user))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        return res.status(400).send({ message: 'ID de usuario no válido' });
+      }
+      return next(err);
+    });
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -28,7 +33,12 @@ module.exports.createUser = (req, res, next) => {
 
   User.create({ name, about, avatar })
     .then((user) => res.status(201).send(user))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        return res.status(400).send({ message: 'Datos de usuario no válidos' });
+      }
+      return next(err);
+    });
 };
 
 //PATH: /users/me
@@ -40,7 +50,11 @@ module.exports.updateProfile = (req, res, next) => {
     { name, about },
     { new: true, runValidators: true },
   )
-    .orFail(() => { throw notFound(); })
+    .orFail(() => {
+      const err = new Error('Usuario no encontrado');
+      err.statusCode = 404;
+      throw err;
+    })
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -62,15 +76,19 @@ module.exports.updateAvatar = (req, res, next) => {
     { avatar },
     { new: true, runValidators: true },
   )
-    .orFail(() => { throw notFound(); })
+    .orFail(() => {
+      const err = new Error('Usuario no encontrado');
+      err.statusCode = 404;
+      throw err;
+    })
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === 'ValidationError')
+      if (err.name === 'ValidationError') {
         return res.status(400).send({ message: 'Datos de usuario no válidos' });
-      if (err.name === 'CastError')
+      }
+      if (err.name === 'CastError') {
         return res.status(400).send({ message: 'ID de usuario no válido' });
-      if (err.statusCode === 404)
-        return res.status(404).send({ message: 'Usuario no encontrado' });
+      }
       return next(err);
     });
 };

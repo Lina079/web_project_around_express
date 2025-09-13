@@ -23,7 +23,7 @@ process.exit(1);
 app.use(async (req, res, next) => {
   try {
     if (!cacheUserId) {
-      const user = await User.findOne().select('_id').lean();
+      const user = await User.findOne().sort({ _id: -1 }).select('_id').lean();
       if (!user) {
         return res
           .status(500)

@@ -1,6 +1,11 @@
 const router = require('express').Router();
+const { getUsers, getUserById, createUser } = require('../controllers/users');
 const fs = require('fs').promises;
 const path = require('path');
+
+router.get('/', getUsers);
+router.get('/:userId', getUserById);
+router.post('/', createUser);
 
 const USERS_PATH = path.join(__dirname, '..', 'data', 'users.json');
 

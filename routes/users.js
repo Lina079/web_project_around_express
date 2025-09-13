@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const { getUsers, getUserById, createUser } = require('../controllers/users');
-const fs = require('fs').promises;
+const { getUsers, getUserById, createUser, updateProfile, updateAvatar } = require('../controllers/users');
 const path = require('path');
 
 router.get('/', getUsers);
 router.get('/:userId', getUserById);
 router.post('/', createUser);
+router.patch('/me', updateProfile);
+router.patch('/me/avatar', updateAvatar);
 
 const USERS_PATH = path.join(__dirname, '..', 'data', 'users.json');
 

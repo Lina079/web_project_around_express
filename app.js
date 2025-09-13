@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const User = require('./models/user');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+let cacheUserId = null;
 
 
 app.use(express.json());
@@ -16,12 +18,25 @@ console.error('Error de conexión a MongoDB:', err.message);
 process.exit(1);
 });
 
-// Middleware para simular un usuario autenticado
-app.use((req, res, next) => {
-  req.user = {
-    _id: '68c560f63621b7f5613452a1', // Reemplaza con un ID de usuario válido
-  };
-  next();
+// Middleware para simular la autenticación
+
+app.use(async (req, res, next) => {
+  try {
+    if (!cacheUserId) {
+      const user = await User.findOne().select('_id').lean();
+      if (!user) {
+        return res
+          .status(500)
+          .json({ message: 'No hay usuarios en la base de datos. Crea uno con POST /users' });
+      }
+      cacheUserId = String(user._id);
+      console.log('Usuario simulado:', cacheUserId);
+    }
+    req.user = { _id: cacheUserId };
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Rutas
